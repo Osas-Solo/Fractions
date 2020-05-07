@@ -147,6 +147,7 @@ public class Fraction {
 
                     numerator /= i;
                     denominator /= i;
+                    break;
 
                 }  //  end of if
 
@@ -417,15 +418,12 @@ public class Fraction {
                     fractionParts.add(fractionString.split("/")[1]);
                 }
             }  //  end of ifs to split
-            Fraction wholeNumber = getFractionFromString(fractionParts);
-            if (wholeNumber != null) return wholeNumber;
 
+            return getFractionFromString(fractionParts);
 
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             throw new FractionException();
         }   //  end of catches
-
-        return new Fraction();
 
     }  //  end of convertToFraction()
 
@@ -476,6 +474,20 @@ public class Fraction {
     public static int compareFractions(Fraction firstFraction, Fraction secondFraction) {
 
         return Double.compare(firstFraction.convertToDecimal(), secondFraction.convertToDecimal());
+
+    }  //  end of compareFractions()
+
+    /**
+     * Indicates if the {@code Fraction} is equal to the {@code otherFraction} or not
+     *
+     * @param otherFraction    compared fraction
+     *
+     * @return  true if the {@code Fraction} is equal to the {@code otherFraction}, false if otherwise
+     *
+     */
+    public boolean equals(Fraction otherFraction) {
+
+        return Fraction.compareFractions(this, otherFraction) == 0;
 
     }  //  end of compareFractions()
 
